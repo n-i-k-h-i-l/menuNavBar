@@ -1,0 +1,99 @@
+<html>
+<head>
+	<title>Responsive 3-Line Menu</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<style type="text/css">
+	* {
+		margin: 0;
+		padding: 0;
+	}
+	ul {
+		margin-left: 0.3%;
+		width:100%;
+		list-style-type: none;
+	}
+
+	li {
+		width:33%;
+		float:left;
+		border-right: 1px solid #eee;
+	}
+	
+
+	li a {
+		display: block;
+		width:80%;
+		background:#ddd;
+		padding:4% 10%;
+		font-size:1.35em;
+		text-decoration: none;
+	}
+
+	@media screen and (max-width: 500px) {
+		#menuBackground {
+			width:100%;
+			display: block;
+			background:#ddd;
+			font-size:1.35em;
+			text-align: left;
+		}
+		#menu{
+			margin-left: 5%;
+		}
+		#nav.js {
+			display: none;
+			width: 100%;
+		}
+		ul {
+			width:100%;
+			list-style:none;
+		}
+		li {
+			width:100%;
+			border-right:none;
+		}
+	}
+
+	@media screen and (min-width: 500px) {
+		#menu {
+			display: none;
+		}
+	}
+	</style>
+
+	<script type="text/javascript">
+	$(document).ready(function(){
+		if(window.innerWidth < 500) {
+			$("#nav").addClass("js").before('<div id="menuBackground"><span id="menu">=</span></div>');
+		}
+
+		OnClickMenu();
+	});
+
+	function OnClickMenu(){
+		$("#menu").click(function(){
+			$("#nav").toggle();
+		});
+	}
+
+	$(window).resize(function(){
+		if(window.innerWidth > 500) {
+			$("#nav").removeAttr("style");
+			$("menuBackground").remove();
+			$("#nav").removeClass("js");
+		} else if($("#menu").length<=0){
+			$("#nav").addClass("js").before('<div id="menuBackground"><span id="menu">=</span></div>');
+			OnClickMenu();
+		}
+	});
+		
+	</script>
+</head>
+<body>
+<ul id="nav">
+	<li><a href="#">Home</a></li>
+	<li><a href="#">About</a></li>
+	<li><a href="#">Contact</a></li>
+</ul>
+</body>
+</html>
